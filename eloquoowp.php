@@ -3,6 +3,7 @@
 use Illuminate\Container\Container;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
+use Outlandish\Wordpress\Eloquoowp\EloquentManager;
 
 /*
 Plugin Name: Eloquent extension for OOWP
@@ -24,5 +25,13 @@ if (!function_exists('init_eloquoowp')) {
         $capsule->setEventDispatcher(new Dispatcher(new Container));
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
+    }
+}
+
+if (class_exists('WP_CLI')) {
+    try {
+        WP_CLI::add_command('eloquent:migrate', EloquentManager::migrate());
+    } catch (\Exception $e) {
+        error_log($e->getMessage());
     }
 }
