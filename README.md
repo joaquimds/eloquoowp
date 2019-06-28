@@ -28,7 +28,7 @@ For all Post Types that you wish to associate with an Eloquent Model, create a n
 And an associated model class:
     
     class ExampleModel extends Base {
-        protected $table = 'mps';
+        protected $table = 'examples';
 
         public static function createTable()
         {
