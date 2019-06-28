@@ -44,6 +44,7 @@ And an associated model class:
         {
             $postId = wp_insert_post([
                 'ID' => $this->id,
+                'post_type' => ExamplePostType::postType(),
                 ...
             ]);
             $post = WordpressPost::fetchById($postId);
