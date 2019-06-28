@@ -10,7 +10,7 @@ Intended features:
 
 ## Why?
 
-We like using the WordPress admin dashboard to define data types, and manage content and data. ACFs provide a very flexible and powerful way to do this. However, doing more complex or intense operations on WordPress data is less than ideal. If this library works, it should be possible to both manage data through the admin system, and easily use that data in complex ways.
+We like using the WordPress admin dashboard to define data types, manage content, and manage data. ACFs provide a very flexible and powerful way to do this. However, doing more complex or intense operations on WordPress data is less than ideal. If this library works, it should be possible to both manage data through the admin system, and easily use that data in complex ways.
 
 ## Installation
 
