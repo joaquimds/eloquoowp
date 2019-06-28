@@ -65,4 +65,4 @@ And an associated model class:
         }
     }
     
-Create your database tables with `wp eloquent:migrate`.
+Create your database tables with `wp eloquent:create`.
