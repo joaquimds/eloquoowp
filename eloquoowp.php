@@ -30,7 +30,7 @@ if (!function_exists('init_eloquoowp')) {
 
 if (class_exists('WP_CLI')) {
     try {
-        WP_CLI::add_command('eloquent:migrate', EloquentManager::migrate());
+        WP_CLI::add_command('eloquent:migrate', function () { EloquentManager::migrate(); });
     } catch (\Exception $e) {
         error_log($e->getMessage());
     }

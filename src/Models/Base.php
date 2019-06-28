@@ -27,7 +27,6 @@ abstract class Base extends Model
         $post = WordpressPost::fetchById($this->id);
         if (!$post) {
             $post = $this->createWordpressPost();
-
         }
         return $post;
     }
