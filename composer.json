@@ -32,6 +32,6 @@
     "phpoption/phpoption": "^1.3",
     "vlucas/phpdotenv": "^3.4",
     "composer/installers": "~1.0",
-    "outlandish/oowp": "dev-delete-post-hook",
+    "outlandish/oowp": "dev-delete-post-hook"
   }
 }
