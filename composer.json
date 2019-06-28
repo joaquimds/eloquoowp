@@ -1,5 +1,5 @@
 {
-  "name": "outlandish/eloquoowp",
+  "name": "joaquimds/eloquoowp",
   "type": "wordpress-muplugin",
   "description": "An extension to OOWP to store post data in Laravel",
   "minimum-stability": "dev",
