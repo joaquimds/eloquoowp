@@ -20,8 +20,6 @@ abstract class Base extends Model
         return $instance;
     }
 
-    public static abstract function createTable();
-
     public function findOrCreateWordpressPost()
     {
         $post = WordpressPost::fetchById($this->id);

@@ -30,7 +30,20 @@ if (!function_exists('init_eloquoowp')) {
 
 if (class_exists('WP_CLI')) {
     try {
-        WP_CLI::add_command('eloquent:create', function () { EloquentManager::migrate(); });
+        WP_CLI::add_command('eloquent:migrate:up', function () {
+            try {
+                EloquentManager::migrateUp();
+            } catch (\Exception $e) {
+                WP_CLI::line($e->getMessage());
+            }
+        });
+        WP_CLI::add_command('eloquent:migrate:down', function () {
+            try {
+                EloquentManager::migrateDown();
+            } catch (\Exception $e) {
+                WP_CLI::line($e->getMessage());
+            }
+        });
     } catch (\Exception $e) {
         error_log($e->getMessage());
     }
