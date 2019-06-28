@@ -1,5 +1,19 @@
 # Eloquent OOWP
 
+Create Post Types that have their data synched with an Eloquent Model.
+
+Intended features:
+
+1. Creating a post creates an associated eloquent shadow, and vice-versa.
+2. Updating a post updates its eloquent shadow, and vice-versa.
+3. Deleting a post deletes its eloquent shadow, and vice versa.
+
+## Why?
+
+We like using the WordPress admin dashboard to define data types, manage content, and manage data. ACFs provide a very flexible and powerful way to do this. 
+
+However, doing more complex or intense operations on WordPress data is difficult and inefficient. If this library works, it should be possible to both manage data through the admin system, and easily use that data in complex ways.
+
 ## Installation
 
 `composer require joaquimds/eloquoowp`
@@ -65,4 +79,4 @@ And an associated model class:
         }
     }
     
-Create your database tables with `wp eloquent:migrate`.
+Create your database tables with `wp eloquent:create`.
