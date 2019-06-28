@@ -12,7 +12,7 @@ Version: 0.1
 */
 
 if (!function_exists('init_eloquoowp')) {
-    function init_eloqueoowp($args = [])
+    function init_eloquoowp($args = [])
     {
         $args['driver'] = 'mysql';
         $args['charset'] = 'utf8mb4';
