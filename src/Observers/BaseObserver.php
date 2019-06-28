@@ -17,23 +17,10 @@ class BaseObserver
         $instance->updateWordPressPost($post);
     }
 
-    // Delete the WordPress Post if the deletion wasn't started from the WordPress Admin
+    // Delete the WordPress Post if the deletion wasn't started by WordPress
     public function deleted(Base $instance)
     {
-        $self = ($_SERVER && !empty($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : null;
-
-        switch ($self) {
-            case '/wp/wp-admin/post.php':
-                $action = ($_REQUEST && !empty($_REQUEST['action'])) ? $_REQUEST['action'] : null;
-                $alreadyDeleting = $action === 'delete';
-                break;
-            case '/wp/wp-admin/edit.php':
-                $alreadyDeleting = $_REQUEST && !empty($_REQUEST['delete_all']);
-                break;
-            default:
-                $alreadyDeleting = false;
-        }
-
+        $alreadyDeleting = current_action() === 'before_delete_post';
         if (!$alreadyDeleting) {
             wp_delete_post($instance->id, true);
         }
