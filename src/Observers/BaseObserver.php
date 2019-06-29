@@ -8,13 +8,18 @@ class BaseObserver
 {
     public function created(Base $instance)
     {
-        $instance->findOrCreateWordpressPost();
+        $this->updated($instance);
     }
 
     public function updated(Base $instance)
     {
-        $post = $instance->findOrCreateWordpressPost();
-        $instance->updateWordPressPost($post);
+        $alreadyUpdated = current_action() === 'save_post';
+        if (!$alreadyUpdated) {
+            $post = $instance->findWordpressPost();
+            if ($post) {
+                $instance->updateWordPressPost($post);
+            }
+        }
     }
 
     // Delete the WordPress Post if the deletion wasn't started by WordPress

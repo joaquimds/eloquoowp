@@ -20,16 +20,37 @@ abstract class Base extends Model
         return $instance;
     }
 
-    public function findOrCreateWordpressPost()
+    public function findWordpressPost()
     {
-        $post = WordpressPost::fetchById($this->id);
-        if (!$post) {
-            $post = $this->createWordpressPost();
-        }
-        return $post;
+        return WordpressPost::fetchById($this->id);
     }
 
-    public abstract function createWordpressPost();
+    public function createWordpressPost()
+    {
+        $args = $this->getPostArray();
+        $args = wp_parse_args($args, ['post_status' => 'publish']);
+        return wp_insert_post($args);
+    }
+
+    public function save(array $options = [])
+    {
+        if ($this->id) {
+            return parent::save($options);
+        }
+        $id = $this->createWordpressPost();
+        /** @var Base $instance */
+        $instance = static::find($id);
+        if (!$instance) {
+            return parent::save($options);
+        }
+        $attributes = $this->getAttributes();
+        foreach ($attributes as $attribute => $value) {
+            $instance->setAttribute($attribute, $value);
+        }
+        return $instance->save();
+    }
+
+    protected abstract function getPostArray();
 
     public abstract function updateWordpressPost(WordpressPost $post);
 
